@@ -1,4 +1,6 @@
-export default {
+import { defineConfig } from 'vitepress'
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
   title: "ffandown docs",
   description: "ffandown usage doc",
   themeConfig: {
@@ -21,4 +23,5 @@ export default {
       { icon: 'github', link: 'https://github.com/helson-lin/ffandown' }
     ]
   }
-}
+})
+
