@@ -34,6 +34,10 @@ docker run -d -p 8081:8081 -v /home/media:/app/media  -v /Uses/helson/config:/ap
 `/app/logs`为容器内日志文件目录，可以根据实际需求是否映射
 
 
+::: tip
+arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
+:::
+
 ## 群晖安装
 
 1. 拉取镜像：h55205l/ffandown
