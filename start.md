@@ -101,6 +101,47 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 }
 ```
 
+## 配置暴力猴插件使用
+
+### 暴力猴安装
+
+首先确保你已经安装了暴力猴插件, 这里不赘述如何安装
+你可以在以下地方获取：
+
+[极简插件](https://chrome.zzzmh.cn/info/jinjaccalgkegednnccohejagnlnfdag)
+
+[Github](https://github.com/violentmonkey/violentmonkey/releases)
+
+---
+
+### 暴力猴插件安装
+
+目前greasyfork无法上传插件分享，所以需要自行获取脚本手动安装。
+
+---
+#### 复制脚本内容
+点击这个地址[ffandown-violentmonkey-script](https://raw.githubusercontent.com/helson-lin/ffandown-violentmonkey-script/main/index.js)，然后复制内容
+
+---
+
+#### 创建脚本
+    
+   点击插件的图标，然后添加+按钮   
+   ![](https://pic.kblue.site/picgo/202304301054801.png) 
+
+---
+#### 粘贴并保存
+
+粘贴复制的内容，然后修改`FFANDOWN_URL`参数为你的服务部署地址：`http://192.168.31.20:8081`
+
+  ![](https://pic.kblue.site/picgo/202304301100893.png)
+
+
+---
+#### 使用
+
+<video src="https://pic.kblue.site/picgo/REC-20230430110326.mp4" style="height: 300px;" controls></video>
+
 ## 配置快捷指令使用
 
 [点我下载快捷指令](https://www.icloud.com/shortcuts/b185d44fb6574db29c79cb193e5bb079)
