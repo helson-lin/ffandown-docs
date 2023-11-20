@@ -1,5 +1,12 @@
 # 快速开始
 
+## 必看
+
+**建议使用v4.2.1以上的releases版本, 较低版本，`config.yml`配置可能不兼容**
+
+- [更新日志](changelog.md)
+
+
 ## releases安装
 
 releases 安装只需要在下载对应平台的可执行文件即可：[点我下载 ⬇️](https://github.com/helson-lin/ffandown/releases)
