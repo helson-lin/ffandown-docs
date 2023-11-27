@@ -1,7 +1,13 @@
 # Changelog
 
 suggest to use version v4.1 or higher
- 
+
+## v5.0.4-beta
+1. 🦄 refactor: Refactor project, split the project into three parts
+2. ✨ feat: Support useragent custom
+3. ✨ feat: New Task Management Interface 
+4. ✨ feat: Support task progress viewing; Delete; Pause; recovery
+
 ## v4.2.1
 1. 🐞 fix: Fixed m3u8 download 403 error
 2. 🎈perf: change ffmpeg binary download site to oss
@@ -15,7 +21,7 @@ suggest to use version v4.1 or higher
 1. 🎈perf: Optimized the problem of ffmpeg download process timeout (death) and failure to clear the process
 2. ✨feat: Added support for screen recording: rtsmp/rtmp, automatically terminated after the live broadcast ends
 
-## Version 3
+## v3.0
 
 1. ✨ feat: Added multi-threaded transcoding,
 2. ✨ feat: Supported DingTalk message notification,

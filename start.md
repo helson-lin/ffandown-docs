@@ -100,11 +100,35 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 
 请求参数: 
 
-```js
+| 参数名称        |      描述      |  必填 | 版本要求 |
+| ----------- | :---------- | :-----------: | :-----: |
+| name      | 下载任务名称 | :negative_squared_cross_mark: | all |
+| url     |    视频地址, 多个地址使用逗号（英文）分隔    |  :white_check_mark: | all |
+| useragent |   用户代理    |    :negative_squared_cross_mark: | v5.0^ |
+| preset |   预设:'ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium', 'slow', 'slower', 'veryslow'    |    :negative_squared_cross_mark: |  v5.0^ |
+| outputformat |   文件格式：'mp4','mov', 'flv', 'avi'    |    :negative_squared_cross_mark: |  v5.0^ |
+
+
+
+:::code-group
+```js [v5.0以下版本]
 
 {
   name: "videoname",
-  url: "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8"
+  url: "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8",
+  useragent: "",  // 不支持 // [!code --]
+  preset: "", // 不支持 // [!code --]
+  outputformat: "", // 不支持 // [!code --]
+}
+```
+
+```js [v5.0 以上版本]
+{
+  name: "videoname",
+  url: "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8",
+  useragent: "", // 用户代理
+  preset: "", // 预设 
+  outputformat: "" // 文件格式：'mp4', 'mov', 'flv', 'avi'
 }
 ```
 
