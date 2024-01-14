@@ -1,5 +1,18 @@
 # Quick start
 
+## V5 Version
+
+Function optimization for versions above V5.0:
+1. Optimized the interface
+2. Provides task management functionality
+3. Support customization of 'user agent'
+4. Support custom transcoding formats and transcoding presets
+5. Refactored the overall code logic and split the project.
+
+At present, it is in the testing version and can be installed to experience the new features.
+
+Due to the built-in 'sqlite3' in the project, pkg packaging cannot automatically bring in the. node native dependencies, resulting in a missing '. node' file in the release of GitHub Actions packaging. We are currently working on finding a solution
+
 ## Must see
 
 **It is recommended to use releases version v4.2.1 or above. For lower versions, the `config.yml` configuration may not be compatible**

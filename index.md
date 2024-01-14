@@ -4,12 +4,15 @@ layout: home
 
 hero:
   name: "ffandown"
-  text: "usage documentation"
+  text: "使用说明"
   tagline: 
   actions:
     - theme: brand
       text: 快速开始
       link: /start
+    - theme: alt
+      text: 项目实现
+      link: /project
     - theme: alt
       text: Github
       link: https://github.com/helson-lin/ffandown
