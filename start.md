@@ -159,6 +159,7 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
   outputformat: "" // 文件格式：'mp4', 'mov', 'flv', 'avi'
 }
 ```
+:::
 
 ## 配置暴力猴插件使用
 
