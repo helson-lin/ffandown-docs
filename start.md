@@ -75,15 +75,27 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 
    ![](https://pic.kblue.site/picgo/202304282153719.png)
 
-   文件夹映射：媒体文件夹内部`/app/media`, 内部日志文件夹：`/app/logs`, 配置文件夹：`/app/logs`
+   文件夹映射：
+
+    媒体文件夹内部`/app/media`
+
+    内部日志文件夹：`/app/logs`
+
+    配置文件夹：`/app/logs`
+
+    前端静态文件：`/app/public` (可以不配置，无法启动时才需要)
+
+    ffmpeg依赖文件夹：`/app/lib`  (可以不配置，无法启动时才需要)
+
 
    ![](https://pic.kblue.site/picgo/202304282157118.png)
 
    ![](https://pic.kblue.site/picgo/202304282200652.png)
-
+   
 ::: warning
   注意需要给你映射的文件夹授权，在群晖内配置一下
 :::
+
 
 ## 配置文件说明
 
@@ -163,31 +175,68 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 
 ### 暴力猴插件安装
 
-目前greasyfork无法上传插件分享，所以需要自行获取脚本手动安装。
+插件地址：[greasyfork](https://greasyfork.org/zh-CN/scripts/465336-ffandown/)
 
----
-#### 复制脚本内容
-点击这个地址[ffandown-violentmonkey-script](https://raw.githubusercontent.com/helson-lin/ffandown-violentmonkey-script/main/index.js)，然后复制内容
+这里建议将脚本内`m3u8-parser`和`notyf`依赖地址替换为国内的。
 
----
+由于官方的限制，不能使用国内的地址，否则无法颁布，这个默认采用jsdelivr的
 
-#### 创建脚本
-    
-   点击插件的图标，然后添加+按钮   
-   ![](https://pic.kblue.site/picgo/202304301054801.png) 
+请切换下面的 tab为‘国内七牛云’并复制替换脚本的地址。
 
----
-#### 粘贴并保存
+:::code-group
 
-粘贴复制的内容，然后修改`FFANDOWN_URL`参数为你的服务部署地址：`http://192.168.31.20:8081`
+```js [jsdelivr]
+// @require https://cdn.jsdelivr.net/npm/m3u8-parser@4.7.1/dist/m3u8-parser.min.js
+// @require https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js
+```
 
-  ![](https://pic.kblue.site/picgo/202304301100893.png)
-
+```js [国内七牛云]
+// @require https://file.helson-lin.cn/notyf/m3u8-parser.min.js
+// @require https://file.helson-lin.cn/notyf/notyf.min.js
+```
+:::
 
 ---
 #### 使用
 
-<video src="https://pic.kblue.site/picgo/REC-20230430110326.mp4" style="height: 300px;" controls></video>
+<!-- <video src="https://pic.kblue.site/picgo/REC-20230430110326.mp4" style="height: 300px;" controls></video> -->
+
+如果插件解析到 m3u8 的视频地址，那么在页面的右小角会出现“小猫咪”图标，点击可以查看解析到的资源和设置服务配置。
+
+服务器配置支持：自定义接口地址和请求方式以及请求参数。
+
+
+如果使用 ffandown 来下载配置如下：
+
+接口地址：`http://hostname:port/down`
+
+请求方式 `POST`,
+
+请求参数：`{ "name": "$name", "url": "$url"}`
+
+
+
+
+:::tip
+m3u8批量下载器的参数配置如下：`{"type": 2, "data": "$name,$url"}`
+:::
+
+
+
+
+##### 关于请求参数说明：
+
+请求参数支持自定义配置，脚本内置两个两个变量：
+
+`$name`解析到的视频名称, 
+`$url`解析到的 m3u8 的地址
+
+```js
+{
+  "name": "$name", 
+  "url": "$url"
+}
+```
 
 ## 配置快捷指令使用
 
