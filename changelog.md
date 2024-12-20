@@ -1,6 +1,6 @@
 # Changelog
 
-suggest to use version v4.1 or higher
+建议使用5.0 以上的版本
 
 ## v5.0.4-beta
 1. 🦄 refactor: Refactor project, split the project into three parts
@@ -33,5 +33,5 @@ suggest to use version v4.1 or higher
 
 ## v2.0
 
-Basic version: supports m3u8 video download and notification through Bark and Feishu, but has bugs. 
-This version requires downloading the `config.yml` file and the corresponding platform's executable file, and placing them in the same directory. It is not recommended to use this version.
+基础版：支持m3u8视频下载和通过Bark和Feishu进行通知，但存在漏洞。
+此版本需要下载`config.yml`文件和相应平台的可执行文件，并将它们放置在同一目录中。不建议使用此版本。

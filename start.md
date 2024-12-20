@@ -1,6 +1,12 @@
 # 快速开始
 
+## 更新计划
+
+<iframe src="https://www.yuque.com/helsonlin/iplabe/cul034o09w6aoqyz?inner=FReK8" style="width: 100%;height: 500px;outline: none;border: 1px solid;border-radius: 3px;"></iframe>
+
 ## v5版本
+
+**建议使用v4.2.1以上的releases版本, 较低版本，`config.yml`配置可能不兼容**
 
 V5.0以上的版本功能优化：
 
@@ -10,17 +16,8 @@ V5.0以上的版本功能优化：
 4. 支持自定义转码格式和转码预设
 5. 重构了整体代码逻辑，拆分项目。
 
-目前处于测试版本，为了体验新功能可以安装。
 
-由于项目内置了`sqlite3`, pkg打包无法自动带入.node原生的依赖，导致github actions打包的release存在缺少`.node`文件的问题。当前正在想办法解决。
-
-
-## 必看
-
-**建议使用v4.2.1以上的releases版本, 较低版本，`config.yml`配置可能不兼容**
-
-
-- [更新日志](changelog.md)
+  [详细更新日志](changelog.md)
 
 
 ## releases安装
@@ -81,7 +78,7 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 
     内部日志文件夹：`/app/logs`
 
-    配置文件夹：`/app/logs`
+    配置文件夹：`/app/config`
 
     前端静态文件：`/app/public` (可以不配置，无法启动时才需要)
 
