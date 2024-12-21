@@ -5,6 +5,23 @@ commentid: qa-comment
 
 # 常见问题
 
+## 容器无法正常启动
+
+<iframe src="https://app.warp.dev/block/embed/fQgjUg1S7pP6KGTaqXZmOo"  title="embedded warp block" style="width: 100%;  height: 450px;border:0; overflow:hidden;" allow="clipboard-read; clipboard-write"></iframe>
+
+出现类似下面问题，是由于前端静态文件存在 github 导致下载失败，（国内环境问题）
+```shell
+TypeError: Cannot read properties of undefined (reading '0')
+    at autoUpdateFrontEnd (/snapshot/ffandown/bin/utils/version.js:94:42)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async initializeFrontEnd (/snapshot/ffandown/bin/utils/version.js:110:18)
+    at async Server.<anonymous> (/snapshot/ffandown/bin/app.js:260:13)
+```
+
+解决：手动[下载👇](https://github.com/helson-lin/ffandown-front)前端文件，丢入 public 文件夹内解压即可（确保 index.html 存在 public 一级目录下面），重启服务即可。
+docker 容器需要将/app/public 目录映射出来，手动上传到映射的文件夹内。
+
+
 ##  无法正常访问 github.com 导致容器启动失败
   
 项目前端的依赖和 ffmpeg 都是从 `github.com` 同步下载的，如果网络环境不行，会出现无法正常启动服务的情况。
