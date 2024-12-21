@@ -1,8 +1,13 @@
 # 快速开始
 
+
+## 需求和 bug 反馈
+
+https://www.yuque.com/g/helsonlin/iplabe/eliv187tnx55mglb/collaborator/join?token=qC1AMEF9zl6bwY0H&source=doc_collaborator# 邀请你共同编辑文档《需求和 Bug 反馈》
+
 ## 更新计划
 
-<iframe src="https://www.yuque.com/helsonlin/iplabe/cul034o09w6aoqyz?inner=FReK8" style="width: 100%;height: 500px;outline: none;border: 1px solid;border-radius: 3px;"></iframe>
+https://www.yuque.com/helsonlin/iplabe/cul034o09w6aoqyz?inner=FReK8
 
 ## v5版本
 
