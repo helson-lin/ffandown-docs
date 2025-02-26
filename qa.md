@@ -5,6 +5,15 @@ commentid: qa-comment
 
 # 常见问题
 
+## Dash协议支持
+
+由于内置的ffmpeg的版本为4.4.1,不支持dash的解码，可以手动升级lib目录下面ffmpeg的版本为6.1以上的版本（注意ffmpeg需要执行权限）
+
+计划升级内置的ffmpeg版本
+
+Due to the built-in version of ffmpeg being 4.4.1, it does not support decoding of dash. You can manually upgrade the version of ffmpeg in the lib directory to 6.1 or above (note that ffmpeg requires execution permission)
+
+
 ## 容器无法正常启动
 
 <iframe src="https://app.warp.dev/block/embed/fQgjUg1S7pP6KGTaqXZmOo"  title="embedded warp block" style="width: 100%;  height: 450px;border:0; overflow:hidden;" allow="clipboard-read; clipboard-write"></iframe>

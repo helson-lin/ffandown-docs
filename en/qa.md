@@ -5,6 +5,10 @@ commentid: qa-comment
 
 # common problem
 
+## Dash protocol support
+
+Due to the built-in version of ffmpeg being 4.4.1, it does not support decoding of dash. You can manually upgrade the version of ffmpeg in the lib directory to 6.1 or above (note that ffmpeg requires execution permission)
+
 ## Download failed: `input/output error` appears in the log
 
 In this case, first make sure whether the download directory has permissions (if the download has been successful before, it must have permissions)
