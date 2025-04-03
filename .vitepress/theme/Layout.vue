@@ -6,8 +6,9 @@ const { Layout } = Theme
 </script>
 
 <template>
-  <header>
-    <div class="banner" v-if="frontmatter?.hero?.banner">{{ frontmatter?.hero?.banner }}</div>
-  </header>
-  <Layout></Layout>
+    <Layout>
+        <template #home-hero-before>
+            <div class="banner" v-if="frontmatter?.hero?.banner">{{ frontmatter?.hero?.banner }}</div>
+        </template>
+    </Layout>
 </template>
