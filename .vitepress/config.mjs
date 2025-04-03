@@ -1,8 +1,9 @@
 import { defineConfig } from 'vitepress'
-// https://vitepress.dev/reference/site-config
+
 export default defineConfig({
   title: "FFandown docs",
   description: "FFandown usage doc",
+  srcDir: './docs',
   locales: {
     root: {
       label: '中文',
@@ -31,6 +32,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    lastUpdated: true,
     nav: [
       { text: 'Home', link: '/' },
       { text: '快速开始', link: '/start' }
@@ -47,6 +49,10 @@ export default defineConfig({
         ]
       }
     ],
+
+    search: {
+      provider: 'local'
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/helson-lin/ffandown' }

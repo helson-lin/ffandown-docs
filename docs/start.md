@@ -134,7 +134,7 @@ v5.0 以上版本
 
 ## Api使用
 
-<p><img src="./assets/apifox.svg" /><a href="https://apifox.com/apidoc/shared-d00c4b27-4841-4ecd-932c-b04bdc3b94cd">Api 文档</a></p>
+<p><img src="https://storage.helson-lin.cn/3&2EC_apifox.svg" /><a href="https://apifox.com/apidoc/shared-d00c4b27-4841-4ecd-932c-b04bdc3b94cd">Api 文档</a></p>
 
 创建下载任务
 
