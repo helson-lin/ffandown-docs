@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "ffandown"
+  name: "FFandown"
   text: "使用说明"
   tagline: 
   actions:
@@ -19,10 +19,10 @@ hero:
 
 features:
   - title: 下载支持
-    details: 支持m3u8视频下载、m3u8、rtmp、rtsp直播录屏
+    details: 支持m3u8、flv、mp4、视频转码下载、m3u8、rtmp、rtsp直播录屏、支持插件系统
   - title: 多平台支持
     details: 支持linux、macos、win; 支持docker; 支持群晖
   - title: 消息通知
-    details: 支持钉钉、飞书、bark消息通知
+    details: 支持钉钉、飞书、bark、gotify消息通知
 ---
 

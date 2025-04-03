@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "ffandown docs",
-  description: "ffandown usage doc",
+  title: "FFandown docs",
+  description: "FFandown usage doc",
   locales: {
     root: {
       label: '中文',
@@ -40,7 +40,10 @@ export default defineConfig({
       {
         text: 'Examples',
         items: [
+          { text: 'Docker部署', link: '/start.html#docker-安装' },
+          { text: 'API 文档', link: '/start.html#api使用' },
           { text: '常见问题', link: '/qa' },
+          { text: '插件开发', link: '/plugin' },
         ]
       }
     ],

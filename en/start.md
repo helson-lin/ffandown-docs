@@ -53,6 +53,8 @@ The default startup port is `8081`, corresponding to the `port` field in the con
 
 `/app/logs` is the log file directory in the container, which can be mapped according to actual needs.
 
+`/app/public` is the front end static file directory 
+
 
 ::: tip
 Arm users please use the `arm64` version: `h55205l/ffandown:arm64`
@@ -89,16 +91,27 @@ If there is no config.yml configuration file, the default configuration will be 
 - `port`: The port the service listens on
 - `downloadDir`: download directory, relative to the location of the executable file, or use an absolute path (load @ in front of the address)
 - `webhooks`: webhook notification address, you can use software such as DingTalk or bark. `$TEXT` is a variable: the name of the downloaded file (note that the variable is in uppercase only and only supports bark)! ! ! Please modify the address manually
-- `webhookType`: bark | 'feishu' | 'dingding'
+- `webhookType`: bark | 'feishu' | 'dingding' | 'gotify'
 - `thread`: whether to enable express multi-thread service (not enabled by default)
 - `downloadThread`: Whether to enable `ffmpeg` multi-thread transcoding
 - `useFFmpegLib`: Whether to automatically build in ffmpeg. When the service is started, it will automatically download ffmpeg for the corresponding platform. If it is not started, the local environment will be used by default.
+- `maxDownloadNum`: Maximum number of simultaneous download tasks (the larger the number, the more memory it occupies)
+- `enableTimeSuffix`: Enable global task timestamp suffix
+- `debug`: Enable debug mode to increase log output
 
 ## General use
 
 After the service is started successfully, you can see the download page by opening `localhost:8081` directly in the browser.
 
 ![](https://pic.kblue.site/picgo/202304282209818.png)
+
+:::info
+
+If you use v5.1 Above Version
+
+No registration is required for the first login. By default, the first account you log in with will be automatically registered. Please remember your username and password.
+:::
+
 
 
 ## API usage
@@ -113,13 +126,50 @@ Request header: `Content-Type`: `application/json`
 
 Request parameters:
 
-```js
+| Parameter Name       | Description | Required | Version Requirement |
+|---------------------|-------------|:--------:|:-------------------:|
+| name                | Download task name | :negative_squared_cross_mark: | all |
+| url                 | Video URL(s). Separate multiple URLs with commas (English format). | :white_check_mark: | all |
+| useragent           | User agent | :negative_squared_cross_mark: | v5.0^ |
+| preset              | Preset: 'ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium', 'slow', 'slower', 'veryslow' | :negative_squared_cross_mark: | v5.0^ |
+| outputformat        | File format: 'mp4','mov', 'flv', 'avi' | :negative_squared_cross_mark: | v5.0^ |
+| dir                 | Download directory (relative to the configured folder path) | :negative_squared_cross_mark: | v5.0^ |
+| enableTimeSuffix    | Whether to enable timestamp suffix (boolean type) | :negative_squared_cross_mark: | v5.0^ |
+| headers             | Request headers [{key: '', value: ''}] | :negative_squared_cross_mark: | v5.1^ (Official release) |
+| username            | Username (for standalone API authentication) | :negative_squared_cross_mark: | v5.0^ |
+| password            | Password (for standalone API authentication) | :negative_squared_cross_mark: | v5.0^ |
+
+:::code-group
+```js [v5.0]
 
 {
-   name: "videoname",
-   url: "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8"
+  name: "videoname",
+  url: "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8",
+  useragent: "",  // not support // [!code --]
+  preset: "", // not support // [!code --]
+  outputformat: "", // not support // [!code --]
+  dir: "", // not support // [!code --]
+  enableTimeSuffix: false, // not support // [!code --]
+  username: "admin",  // not support // [!code --]
+  password: "admin123", // not support // [!code --]
 }
 ```
+
+```js [v5.0 Above]
+{
+  name: "videoname",
+  url: "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8",
+  useragent: "",
+  preset: "", 
+  outputformat: "", // ：'mp4', 'mov', 'flv', 'avi'
+  dir: "", // 
+  enableTimeSuffix: false, //
+  username: "admin", 
+  password: "admin123",
+
+}
+```
+:::
 
 ## Configure the violent monkey plug-in to use
 
@@ -134,7 +184,17 @@ You can get it at:
 
 ---
 
-### Violent Monkey plug-in installation
+### Violent Monkey plug-in installation [⚠️ Not recommended]
+
+:::warning
+
+Tampermonkey has limitations and cannot parse all scenarios.
+
+It is recommended to use [Cat Catch](https://cat-catch.bmmmd.com/docs/install)
+
+or use my modified version that supports sending tasks to ffandown: [GitHub🤖](https://github.com/helson-lin/cat-catch)
+
+:::
 
 Currently, greasyfork cannot upload plug-ins for sharing, so you need to obtain the script and install it manually.
 
@@ -147,7 +207,6 @@ Click this address [ffandown-violentmonkey-script](https://raw.githubusercontent
 #### Create script
     
     Click on the plugin’s icon and add the + button
-    ![](https://pic.kblue.site/picgo/202304301054801.png)
 
 ---
 #### Paste and save
@@ -158,14 +217,3 @@ Paste the copied content, and then modify the `FFANDOWN_URL` parameter to your s
 
 
 ---
-#### use
-
-<video src="https://pic.kblue.site/picgo/REC-20230430110326.mp4" style="height: 300px;" controls></video>
-
-## Configure shortcut command usage
-
-[Click here to download shortcuts](https://www.icloud.com/shortcuts/b185d44fb6574db29c79cb193e5bb079)
-
-Remember to edit the command before use and modify the server's address IP and port.
-
-<img src="https://pic.kblue.site/picgo/IMG_D37B0D511136-1.jpeg" style="height: 600px;margin: 0 auto;">

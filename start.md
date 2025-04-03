@@ -25,7 +25,7 @@ V5.0以上的版本功能优化：
   [详细更新日志](changelog.md)
 
 
-## releases安装
+## Releases安装
 
 releases 安装只需要在下载对应平台的可执行文件即可：[点我下载 ⬇️](https://github.com/helson-lin/ffandown/releases)
 
@@ -40,12 +40,12 @@ linux平台用户下载完毕，首先要给**文件授权**：`chmod +x fffando
 
 macos平台用户和linux一样需要授权之后，再执行文件，不多赘述。
 
-## docker 安装
+## Docker 安装
 
 终端执行以下命令：
 
 ```bash
-docker run -d -p 8081:8081 -v /home/media:/app/media  -v /Uses/helson/config:/app/config -v /Uses/helson/logs:/app/logs h55205l/ffandown:latest
+docker run -d -p 8081:8081 -v /home/media:/app/media -v /Uses/helson/public:/app/public  -v /Uses/helson/config:/app/config -v /Uses/helson/logs:/app/logs h55205l/ffandown:latest
 ```
 
 ### 命令说明
@@ -55,6 +55,8 @@ docker run -d -p 8081:8081 -v /home/media:/app/media  -v /Uses/helson/config:/ap
 `/app/media`为容器内下载媒体的目录
 
 `/app/config`为容器内配置文件目录
+
+`/app/public`为容器内前端静态文件目录
 
 `/app/logs`为容器内日志文件目录，可以根据实际需求是否映射
 
@@ -106,10 +108,14 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 - `port`: 服务监听的端口
 - `downloadDir`: 下载目录，相对于执行文件位置，或者使用绝对路径（在地址前面加载@）
 - `webhooks`: webhook通知地址，可以使用钉钉或者bark之类软件,`$TEXT`为变量：下载文件的名称（注意变量是纯大写的，仅支持bark）！！！请大家手动修改地址
-- `webhookType`: bark | 'feishu' ｜ 'dingding'
+- `webhookType`: bark | 'feishu' ｜ 'dingding' | 'gotify'
 - `thread`: 是否开启express 多线程服务（默认不开启）
 - `downloadThread`: 是否开启`ffmpeg`多线程转码
+- `maxDownloadNum`: 最大同时下载任务数量（数量越大占用内存越多）
+- `enableTimeSuffix`: 是否开启全局时间戳后缀
+- `debug`: 开启 debug 模式，增加日志输出
 - `useFFmpegLib`: 是否自动内置ffmpeg，启动服务会自动去下载对应平台的ffmpeg，不启动默认采用本地环境的
+-  `proxy`: 配置代理支持 http/https/socket（用于请求需要代理的资源）exp: `http://192.168.31.12:10808` (版本 v5.1以上)
 
 ## 常规使用
 
@@ -118,7 +124,17 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 ![](https://pic.kblue.site/picgo/202304282209818.png)
 
 
+:::tip
+
+v5.0 以上版本
+
+首次登录的不需要注册用户，默认你登录的第一个用户会自动注册，请记住你的账户和密码
+
+:::
+
 ## Api使用
+
+<p><img src="./assets/apifox.svg" /><a href="https://apifox.com/apidoc/shared-d00c4b27-4841-4ecd-932c-b04bdc3b94cd">Api 文档</a></p>
 
 创建下载任务
 
@@ -133,11 +149,15 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
 | 参数名称        |      描述      |  必填 | 版本要求 |
 | ----------- | :---------- | :-----------: | :-----: |
 | name      | 下载任务名称 | :negative_squared_cross_mark: | all |
-| url     |    视频地址, 多个地址使用逗号（英文）分隔    |  :white_check_mark: | all |
+| url     |    视频地址, 多个地址换行    |  :white_check_mark: | all |
 | useragent |   用户代理    |    :negative_squared_cross_mark: | v5.0^ |
 | preset |   预设:'ultrafast', 'superfast', 'veryfast', 'faster', 'fast', 'medium', 'slow', 'slower', 'veryslow'    |    :negative_squared_cross_mark: |  v5.0^ |
 | outputformat |   文件格式：'mp4','mov', 'flv', 'avi'    |    :negative_squared_cross_mark: |  v5.0^ |
-
+| dir |   下载目录（相对于配置的文件夹目录）   |    :negative_squared_cross_mark: |  v5.0^ |
+| enableTimeSuffix |   是否启用时间戳后缀（boolean 类型）   |    :negative_squared_cross_mark: |  v5.0^ |
+| headers |  请求头[{key: '', value: ''}]   |    :negative_squared_cross_mark: |  v5.1^（正式版本） |
+| username |  用户名（单独调用接口鉴权）   |    :negative_squared_cross_mark: |  v5.0^ |
+| password |  密码（单独调用接口鉴权）   |    :negative_squared_cross_mark: |  v5.0^ |
 
 
 :::code-group
@@ -158,12 +178,26 @@ arm的用户请使用`arm64`版本：`h55205l/ffandown:arm64`
   url: "http://playertest.longtailvideo.com/adaptive/bipbop/gear4/prog_index.m3u8",
   useragent: "", // 用户代理
   preset: "", // 预设 
-  outputformat: "" // 文件格式：'mp4', 'mov', 'flv', 'avi'
+  outputformat: "", // 文件格式：'mp4', 'mov', 'flv', 'avi'
+  dir: "", // 下载目录
+  enableTimeSuffix: false, // 是否使用时间戳后缀
+  username: "admin", 
+  password: "admin123",
+
 }
 ```
 :::
 
-## 配置暴力猴插件使用
+## 配置暴力猴插件使用(不建议⚠️）
+
+::: warning
+  油猴插件有限制不能解析所有的场景
+
+  建议使用 [猫爪](https://cat-catch.bmmmd.com/docs/install)
+
+  或者使用我修改支持 ffandown 发送任务版本 [github🤖](https://github.com/helson-lin/cat-catch)
+  
+:::
 
 ### 暴力猴安装
 
@@ -240,11 +274,3 @@ m3u8批量下载器的参数配置如下：`{"type": 2, "data": "$name,$url"}`
   "url": "$url"
 }
 ```
-
-## 配置快捷指令使用
-
-[点我下载快捷指令](https://www.icloud.com/shortcuts/b185d44fb6574db29c79cb193e5bb079)
-
-使用前记得先编辑指令，修改服务器的地址IP和端口
-
-<img src="https://pic.kblue.site/picgo/IMG_D37B0D511136-1.jpeg" style="height: 600px;margin: 0 auto;">
