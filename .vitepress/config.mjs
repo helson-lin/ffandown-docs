@@ -4,6 +4,9 @@ export default defineConfig({
   title: "FFandown docs",
   description: "FFandown usage doc",
   srcDir: './docs',
+  head: [
+    ['script', { src: 'https://tianji.1panel.helson-lin.cn/tracker.js', 'data-website-id': 'cmaidcyt10020ezjmb74gv150' }],
+  ],
   locales: {
     root: {
       label: '中文',
